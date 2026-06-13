@@ -1,0 +1,53 @@
+.page-banner {
+  background: linear-gradient(to right, #0a1628 55%, #0d2444 100%);
+  padding: 65px 0 55px;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.page-banner-bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+}
+
+.page-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-banner h1 {
+  font-size: 46px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.breadcrumb a {
+  color: rgba(255,255,255,0.65);
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover { color: white; }
+
+.breadcrumb .crumb-sep { color: rgba(255,255,255,0.4); }
+
+.breadcrumb .crumb-current { color: var(--red); }

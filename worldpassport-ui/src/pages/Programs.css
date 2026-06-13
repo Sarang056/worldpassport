@@ -1,0 +1,125 @@
+.programs-section { background: var(--light); }
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 9px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 25px;
+  background: white;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.program-card {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--red);
+}
+
+.program-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.prog-cat-tag {
+  background: rgba(232,39,42,0.1);
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.prog-featured {
+  font-size: 12px;
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.program-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.program-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.program-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.prog-enquire-btn {
+  display: inline-block;
+  background: var(--navy);
+  color: white;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s;
+  margin-top: auto;
+}
+
+.prog-enquire-btn:hover { background: var(--red); }
+
+.prog-loading,
+.prog-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-light);
+  font-size: 15px;
+}
+
+.prog-empty a { color: var(--red); }
+
+@media (max-width: 900px) { .programs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .programs-grid { grid-template-columns: 1fr; } }
