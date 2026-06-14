@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Programs from './pages/Programs'
 import StudyAbroad from './pages/StudyAbroad'
+import CountryDetail from './pages/CountryDetail'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
 import BecomingPartner from './pages/BecomingPartner'
@@ -30,6 +31,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/programs" element={<Programs />} />
               <Route path="/study-abroad" element={<StudyAbroad />} />
+              <Route path="/study-abroad/:countryId" element={<CountryDetail />} />
               <Route path="/services" element={<Services />} />
               <Route path="/becoming-a-partner" element={<BecomingPartner />} />
               <Route path="/contact" element={<Contact />} />

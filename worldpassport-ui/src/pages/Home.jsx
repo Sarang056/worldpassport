@@ -5,24 +5,9 @@ import Counter from '../components/Counter'
 import './Home.css'
 
 const slides = [
-  {
-    img: '/hero1.jpeg',
-    subtitle: 'WELCOME TO World Passport',
-    title: 'Study in Malta, Europe\'s Rising Destination',
-    desc: 'Affordable EU education, English-speaking environment, global exposure, and excellent career opportunities await.',
-  },
-  {
-    img: '/hero2.jpeg',
-    subtitle: 'WELCOME TO World Passport',
-    title: 'We Ensure Great Lifestyle For your family',
-    desc: 'We provide a complete immigration & visa services for USA Canada & Australia for travel & education',
-  },
-  {
-    img: '/hero3.jpeg',
-    subtitle: 'WELCOME TO World Passport',
-    title: 'Immigration & Visa Solutions the easy way',
-    desc: 'We provide a complete immigration & visa services for USA Canada & Australia for travel & education',
-  },
+  { img: '/hero1.jpeg', subtitle: 'WELCOME TO World Passport', title: 'Study in Malta, Europe\'s Rising Destination', desc: 'Affordable EU education, English-speaking environment, global exposure, and excellent career opportunities await.' },
+  { img: '/hero2.jpeg', subtitle: 'WELCOME TO World Passport', title: 'We Ensure Great Lifestyle For your family', desc: 'We provide complete immigration & visa services for USA, Canada & Australia for travel & education.' },
+  { img: '/hero3.jpeg', subtitle: 'WELCOME TO World Passport', title: 'Immigration & Visa Solutions the easy way', desc: 'We provide complete immigration & visa services for USA, Canada & Australia for travel & education.' },
 ]
 
 const serviceCards = [
@@ -31,11 +16,12 @@ const serviceCards = [
   { img: '/service3.jpg', title: 'University & Course Selection' },
 ]
 
-const programs = [
-  { icon: '🎓', title: 'Undergraduate Programs', desc: 'Start your academic journey with internationally recognized bachelor\'s degrees designed to build strong foundations and prepare you for global careers' },
-  { icon: '🎓', title: 'Postgraduate Programs', desc: 'Advance your knowledge and skills through specialized master\'s degrees that open doors to leadership roles and international opportunities.' },
-  { icon: '🎓', title: 'Doctoral Programs', desc: 'Start your academic journey with internationally recognized bachelor\'s degrees designed to build strong foundations and prepare you for global careers' },
-  { icon: '🎓', title: 'Diploma & Foundation Courses', desc: 'Step into higher education with diploma and foundation programs that prepare you for undergraduate study abroad.' },
+const countries = [
+  { id: 'new-zealand', name: 'New Zealand', code: 'NZ', img: '/newzealand.jpg', desc: 'Experience world-class education, attractive scholarships, and dynamic cultural life in New Zealand.', services: ['Student Visa & University Admission', 'Visitor Visa Guidance', 'Business Visa Support', 'Skill Development', 'Scholarship & Financial Assistance', 'Cultural Orientation & Accommodation Support'] },
+  { id: 'mauritius', name: 'Mauritius', code: 'MU', img: '/mauritius.jpg', desc: 'Mauritius offers world-class universities, attractive scholarships, and rich cultural exposure.', services: ['Student Visa & University Admission', 'Visitor Visa Guidance', 'Business Visa Support', 'Skill Development', 'Scholarship & Financial Assistance', 'Cultural Orientation & Accommodation Support'] },
+  { id: 'malta', name: 'Malta', code: 'MT', img: '/malta.jpg', desc: 'Discover affordable, globally recognized European education with career pathways across the EU.', services: ['Student Visa & Admission Support', 'Visitor Visa Processing', 'Work Visa & Internship Guidance', 'Business Visa Applications', 'Post-Arrival & Settlement Assistance', 'Scholarship & Financial Guidance'] },
+  { id: 'malaysia', name: 'Malaysia', code: 'MY', img: '/Malaysia.jpg', desc: 'Malaysia provides affordable, high-quality education in a multicultural environment.', services: ['Student Visa & Admission Assistance', 'Visitor Visa Guidance', 'Scholarship & Financial Assistance', 'Work Visa & Internship Opportunities', 'Business Visa Processing', 'Pre-Departure & Post-Arrival Support'] },
+  { id: 'singapore', name: 'Singapore', code: 'SG', img: '/singapore.jpg', desc: 'Singapore offers world-class universities, scholarships, and vibrant cultural exposure.', services: ['Student Visa & University Admission', 'Visitor Visa Guidance', 'Business Visa Support', 'Skill Development', 'Scholarship & Financial Assistance', 'Cultural Orientation & Accommodation Support'] },
 ]
 
 const whyItems = [
@@ -52,22 +38,23 @@ const testimonials = [
 
 const faqs = [
   { q: 'Q1. How do I choose the right country for my studies?', a: 'Our expert counselors analyze your goals, interests, and budget to recommend the best country, course, and university for your future.' },
-  { q: 'Q2. Does World Passport help with visa applications?', a: 'Yes, we provide complete visa guidance, including documentation, application support, and interview preparation, to ensure a smooth approval process.' },
-  { q: 'Q3. Are scholarships available for international students?', a: 'Absolutely. We guide students in finding and applying for scholarships, financial aid, and loan options to make studying abroad affordable.' },
-  { q: 'Q4. Will I get support after reaching my study destination?', a: 'Yes, we offer post-arrival assistance, including airport pickup, accommodation support, and cultural orientation to help you settle in easily.' },
-  { q: 'Q5. Can I work part-time while studying abroad?', a: 'Most countries allow international students to work part-time during studies. Our team will guide you on rules and opportunities available.' },
-  { q: 'Q6. How long has World Passport been providing services?', a: 'World Passport has years of expertise in global education consulting, supporting thousands of students in achieving successful international careers.' },
+  { q: 'Q2. Does World Passport help with visa applications?', a: 'Yes, we provide complete visa guidance, including documentation, application support, and interview preparation.' },
+  { q: 'Q3. Are scholarships available for international students?', a: 'Absolutely. We guide students in finding and applying for scholarships, financial aid, and loan options.' },
+  { q: 'Q4. Will I get support after reaching my study destination?', a: 'Yes, we offer post-arrival assistance including airport pickup, accommodation support, and cultural orientation.' },
+  { q: 'Q5. Can I work part-time while studying abroad?', a: 'Most countries allow international students to work part-time. Our team will guide you on rules and opportunities available.' },
+  { q: 'Q6. How long has World Passport been providing services?', a: 'World Passport has years of expertise in global education consulting, supporting thousands of students worldwide.' },
 ]
 
 const blogs = [
   { title: 'Essential Pre-Departure Checklist for Students Going Abroad', excerpt: 'Preparing to study abroad is exciting, but it can feel overwhelming. A pre-departure checklist helps ensure you don\'t miss anything important.' },
   { title: 'Scholarships Every International Student Should Know About', excerpt: 'One of the biggest concerns for students is funding their education. Thankfully, many scholarships make studying abroad more accessible.' },
-  { title: 'How to Choose the Right Country to Study Abroad', excerpt: 'With so many options available, selecting the right study destination can feel overwhelming. Here\'s a practical guide to help you make the best choice.' },
-  { title: 'Top 5 Benefits of Studying Abroad', excerpt: 'Studying abroad is more than just a degree—it\'s a life-changing journey. It builds knowledge, skills, and confidence, while opening doors to international careers.' },
+  { title: 'How to Choose the Right Country to Study Abroad', excerpt: 'With so many options available, selecting the right study destination can feel overwhelming. Here\'s a practical guide.' },
+  { title: 'Top 5 Benefits of Studying Abroad', excerpt: 'Studying abroad is more than just a degree—it\'s a life-changing journey that builds knowledge, skills, and confidence.' },
 ]
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
+  const [activeCountry, setActiveCountry] = useState(0)
   const [openFaq, setOpenFaq] = useState(0)
 
   useEffect(() => {
@@ -80,8 +67,7 @@ export default function Home() {
       {/* ── HERO SLIDER ── */}
       <section className="hero-slider">
         {slides.map((s, i) => (
-          <div key={i} className={`hero-slide ${i === current ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${s.img})` }}>
+          <div key={i} className={`hero-slide ${i === current ? 'active' : ''}`} style={{ backgroundImage: `url(${s.img})` }}>
             <div className="hero-overlay" />
             <div className="container hero-content">
               <AnimatedSection direction="left" key={i === current ? 'a' : 'b'}>
@@ -95,8 +81,7 @@ export default function Home() {
         ))}
         <div className="slider-dots">
           {slides.map((_, i) => (
-            <button key={i} className={`dot ${i === current ? 'active' : ''}`}
-              onClick={() => setCurrent(i)} aria-label={`Slide ${i + 1}`} />
+            <button key={i} className={`dot ${i === current ? 'active' : ''}`} onClick={() => setCurrent(i)} />
           ))}
         </div>
       </section>
@@ -109,21 +94,15 @@ export default function Home() {
               <img src="/student.jpg" alt="World Passport Student" className="about-img" />
               <div className="about-call-card">
                 <div className="about-call-icon">📞</div>
-                <div>
-                  <p>Call For Consultation</p>
-                  <strong>+91 92050 31277</strong>
-                </div>
+                <div><p>Call For Consultation</p><strong>+91 92050 31277</strong></div>
               </div>
               <div className="about-badge-bottom">
-                <div className="about-badge-inner">
-                  <span className="grad-icon">🎓</span>
-                  <h5>Shaping Global Careers Through Quality Education</h5>
-                  <p className="badge-sub">Creating Great opportunities</p>
-                </div>
+                <span className="grad-icon">🎓</span>
+                <h5>Shaping Global Careers Through Quality Education</h5>
+                <p className="badge-sub">Creating Great opportunities</p>
               </div>
             </div>
           </AnimatedSection>
-
           <AnimatedSection direction="right">
             <div className="about-text-col">
               <span className="section-label">🎓 ABOUT OUR COMPANY</span>
@@ -131,14 +110,8 @@ export default function Home() {
               <div className="about-title-divider"></div>
               <p>World Passport empowers students with trusted guidance, global university partnerships, and complete support. From course selection to settlement abroad, we ensure a smooth, transparent, and career-focused study journey.</p>
               <div className="about-features">
-                <div className="about-feature-item">
-                  <div className="about-feature-icon">🎫</div>
-                  <span>Global university partnerships</span>
-                </div>
-                <div className="about-feature-item">
-                  <div className="about-feature-icon">🎓</div>
-                  <span>Complete student support</span>
-                </div>
+                <div className="about-feature-item"><div className="about-feature-icon">🎫</div><span>Global university partnerships</span></div>
+                <div className="about-feature-item"><div className="about-feature-icon">🎓</div><span>Complete student support</span></div>
               </div>
               <div className="about-checklist">
                 <p><span className="check">✓</span> Personalized counseling for the right course and country</p>
@@ -153,7 +126,7 @@ export default function Home() {
       {/* ── SERVICES (image cards) ── */}
       <section className="services-img-section">
         <div className="container">
-          <AnimatedSection direction="up">
+          <AnimatedSection direction="left">
             <div className="section-title-center">
               <span className="section-label">🎓 OUR SERVICES</span>
               <h2>Comprehensive Services for Your Global Education Journey</h2>
@@ -164,7 +137,7 @@ export default function Home() {
               <AnimatedSection key={i} direction="up" delay={i * 120}>
                 <Link to="/services" className="service-img-card">
                   <div className="service-img-wrap">
-                    <img src={s.img} alt={s.title} onError={e => { e.target.style.display = 'none' }} />
+                    <img src={s.img} alt={s.title} />
                     <div className="service-img-fallback">{s.title[0]}</div>
                   </div>
                   <h5>{s.title}</h5>
@@ -180,39 +153,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── OUR COURSES / PROGRAMS ── */}
+      {/* ── COUNTRIES CAROUSEL ── */}
+      <section className="countries-carousel-section">
+        <div className="container">
+          <AnimatedSection direction="left">
+            <div className="section-title-center">
+              <span className="section-label">🎓 STUDY ABROAD</span>
+              <h2>Explore Our Top Study Destinations</h2>
+            </div>
+          </AnimatedSection>
+        </div>
+        <div className="countries-carousel-layout">
+          {/* Active country content */}
+          <div className="country-carousel-content">
+            <AnimatedSection direction="left" key={activeCountry}>
+              <div className="cc-header">
+                <span className="cc-country-label">{countries[activeCountry].name.toUpperCase()}</span>
+                <h3>Study in {countries[activeCountry].name}</h3>
+                <p>{countries[activeCountry].desc}</p>
+              </div>
+              <div className="cc-services">
+                {countries[activeCountry].services.map((s, i) => (
+                  <div key={i} className="cc-service-item">
+                    <span>✓</span> {s}
+                  </div>
+                ))}
+              </div>
+              <Link to={`/study-abroad/${countries[activeCountry].id}`} className="cc-contact-btn">
+                CONTACT US
+              </Link>
+            </AnimatedSection>
+          </div>
+
+          {/* Vertical country tabs */}
+          <div className="country-tabs-vertical">
+            {countries.map((c, i) => (
+              <div
+                key={c.id}
+                className={`country-tab ${i === activeCountry ? 'active' : ''}`}
+                onClick={() => setActiveCountry(i)}
+              >
+                <span className="country-tab-name">{c.name.toUpperCase()}</span>
+                <img
+                  src={`https://flagcdn.com/w80/${c.code.toLowerCase()}.png`}
+                  alt={c.name}
+                  className="country-tab-flag"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── OUR COURSES ── */}
       <section className="courses-section">
         <div className="container">
-          <AnimatedSection direction="up">
+          <AnimatedSection direction="left">
             <div className="section-title-center">
               <span className="section-label">🎓 OUR COURSES</span>
               <h2>Explore Global Courses for Your Future</h2>
             </div>
           </AnimatedSection>
           <div className="courses-grid">
-            <div className="courses-left">
-              <AnimatedSection direction="left">
-                <div className="courses-review-box">
-                  <div className="crb-icon">🎓</div>
-                  <h5>Shaping Global Careers Through Quality Education</h5>
-                  <p>Creating Great opportunities</p>
-                </div>
-              </AnimatedSection>
-            </div>
-            <div className="courses-right">
-              <div className="programs-grid">
-                {programs.map((p, i) => (
-                  <AnimatedSection key={i} direction="right" delay={i * 100}>
-                    <div className="program-item">
-                      <div className="program-icon">{p.icon}</div>
-                      <div>
-                        <h5>{p.title}</h5>
-                        <p>{p.desc}</p>
-                      </div>
-                    </div>
-                  </AnimatedSection>
-                ))}
+            <AnimatedSection direction="left">
+              <div className="courses-review-box">
+                <div className="crb-icon">🎓</div>
+                <h5>Shaping Global Careers Through Quality Education</h5>
+                <p>Creating Great opportunities</p>
               </div>
+            </AnimatedSection>
+            <div className="programs-grid">
+              {[
+                { icon: '🎓', title: 'Undergraduate Programs', desc: 'Internationally recognized bachelor\'s degrees for global careers.' },
+                { icon: '🎓', title: 'Postgraduate Programs', desc: 'Specialized master\'s degrees for leadership roles.' },
+                { icon: '🎓', title: 'Doctoral Programs', desc: 'Advanced research degrees with global recognition.' },
+                { icon: '🎓', title: 'Diploma & Foundation', desc: 'Foundation programs for undergraduate study abroad.' },
+              ].map((p, i) => (
+                <AnimatedSection key={i} direction="right" delay={i * 100}>
+                  <div className="program-item">
+                    <div className="program-icon">{p.icon}</div>
+                    <div><h5>{p.title}</h5><p>{p.desc}</p></div>
+                  </div>
+                </AnimatedSection>
+              ))}
             </div>
           </div>
         </div>
@@ -243,17 +266,19 @@ export default function Home() {
               <AnimatedSection key={i} direction="left" delay={i * 150}>
                 <div className="why-item">
                   <div className="why-item-icon">{w.icon}</div>
-                  <div>
-                    <h5>{w.title}</h5>
-                    <p>{w.desc}</p>
-                  </div>
+                  <div><h5>{w.title}</h5><p>{w.desc}</p></div>
                 </div>
               </AnimatedSection>
             ))}
           </div>
           <AnimatedSection direction="right">
             <div className="why-right">
-              <img src="/student.jpg" alt="Why Choose Us" className="why-img" />
+              <img
+                src="/why-girl.jpg"
+                alt="Why Choose Us"
+                className="why-img"
+                onError={e => { e.target.src = '/student.jpg' }}
+              />
             </div>
           </AnimatedSection>
         </div>
@@ -262,7 +287,7 @@ export default function Home() {
       {/* ── TESTIMONIALS ── */}
       <section className="testimonials-section">
         <div className="container">
-          <AnimatedSection direction="up">
+          <AnimatedSection direction="left">
             <div className="section-title-center">
               <span className="section-label">🎓 testimonial</span>
               <h2>Student Experiences With Us</h2>
@@ -272,17 +297,11 @@ export default function Home() {
             {testimonials.map((t, i) => (
               <AnimatedSection key={i} direction="up" delay={i * 150}>
                 <div className="testimonial-card">
-                  <div className="t-top">
-                    <span className="t-rating">Rating:</span>
-                    <div className="stars">★★★★★</div>
-                  </div>
+                  <div className="t-top"><span className="t-rating">Rating:</span><div className="stars">★★★★★</div></div>
                   <p>{t.text}</p>
                   <div className="t-author">
                     <div className="t-avatar">{t.name[0]}</div>
-                    <div>
-                      <strong>{t.name}</strong>
-                      <span>Student</span>
-                    </div>
+                    <div><strong>{t.name}</strong><span>Student</span></div>
                   </div>
                 </div>
               </AnimatedSection>
@@ -306,12 +325,8 @@ export default function Home() {
             <div className="faq-list">
               {faqs.map((f, i) => (
                 <AnimatedSection key={i} direction="right" delay={i * 60}>
-                  <div className={`faq-item ${openFaq === i ? 'open' : ''}`}
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                    <div className="faq-q">
-                      <span>{f.q}</span>
-                      <span className="faq-icon">{openFaq === i ? '▲' : '▼'}</span>
-                    </div>
+                  <div className={`faq-item ${openFaq === i ? 'open' : ''}`} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                    <div className="faq-q"><span>{f.q}</span><span className="faq-icon">{openFaq === i ? '▲' : '▼'}</span></div>
                     {openFaq === i && <p className="faq-a">{f.a}</p>}
                   </div>
                 </AnimatedSection>
@@ -324,7 +339,7 @@ export default function Home() {
       {/* ── BLOGS ── */}
       <section className="blogs-section">
         <div className="container">
-          <AnimatedSection direction="up">
+          <AnimatedSection direction="left">
             <div className="section-title-center">
               <span className="section-label">🎓 Recent Blogs</span>
               <h2>Read Our Recent Articles On International Education Trends</h2>
@@ -347,9 +362,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHATSAPP BUTTON ── */}
-      <a href="https://api.whatsapp.com/send?phone=919205031277" target="_blank" rel="noreferrer"
-        className="whatsapp-btn" aria-label="Chat on WhatsApp">
+      {/* ── WHATSAPP ── */}
+      <a href="https://api.whatsapp.com/send?phone=919205031277" target="_blank" rel="noreferrer" className="whatsapp-btn" aria-label="Chat on WhatsApp">
         <span className="wa-icon">💬</span>
         <span className="wa-text">Need Help? <strong>Chat with us</strong></span>
       </a>

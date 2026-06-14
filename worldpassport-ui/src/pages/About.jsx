@@ -1,65 +1,109 @@
 import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner'
+import AnimatedSection from '../components/AnimatedSection'
 import './About.css'
 
 export default function About() {
   return (
     <main>
-      <PageBanner title="About Us" breadcrumb="ABOUT US" />
+      <PageBanner title="About Us" breadcrumb="ABOUT US" bgImage="/partner-banner.jpg" />
 
-      <section className="about-story">
-        <div className="container about-story-grid">
-          <div className="about-story-img-col">
-            <img src="/hero2.jpeg" alt="About World Passport" className="about-story-img" />
-          </div>
-          <div className="about-story-text">
-            <span className="section-label">O U R  S T O R Y</span>
-            <h2>World Passport – Your Gateway to Global Careers</h2>
-            <p>World Passport is a premier international education consultancy headquartered in Ernakulam, Kerala. We have been helping students realize their dream of studying abroad by providing expert guidance and end-to-end support throughout the entire process.</p>
-            <p>Our team of experienced counselors has deep knowledge of international education systems, university requirements, and visa procedures across 30+ countries. We maintain strong partnerships with 500+ universities worldwide to ensure our students get the best opportunities.</p>
-            <div className="about-values">
-              <div className="value-item">
-                <div className="red-icon-circle">🎯</div>
-                <div>
-                  <strong>Our Mission</strong>
-                  <p>To make quality international education accessible to every aspiring student.</p>
-                </div>
-              </div>
-              <div className="value-item">
-                <div className="red-icon-circle">👁</div>
-                <div>
-                  <strong>Our Vision</strong>
-                  <p>To be India's most trusted study abroad consultancy with a global footprint.</p>
-                </div>
-              </div>
+      {/* ABOUT OUR COMPANY */}
+      <section className="about-intro">
+        <div className="container about-intro-grid">
+          <AnimatedSection direction="left">
+            <div className="about-intro-left">
+              <span className="section-label">🎓 ABOUT OUR COMPANY</span>
+              <h2>Building Pathways to Dreams Through Global Education</h2>
             </div>
-            <Link to="/contact" className="btn-red" style={{ marginTop: '25px' }}>Talk to a Counselor</Link>
+          </AnimatedSection>
+          <AnimatedSection direction="right">
+            <div className="about-intro-right">
+              <p>World Passport is dedicated to guiding students in achieving their international education dreams. With strong global partnerships and transparent counseling, we provide reliable solutions for every stage of the study abroad process.</p>
+              <p>From career counseling and admissions to visa guidance and settlement support, our expert team ensures a smooth, stress-free, and rewarding journey worldwide.</p>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* STUDENTS GROUP PHOTO */}
+      <section className="about-students-photo">
+        <div className="container">
+          <AnimatedSection direction="up">
+            <img src="/about-students.jpg" alt="World Passport Students" className="about-full-img" />
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* VISION & MISSION */}
+      <section className="vision-mission-section">
+        <div className="container">
+          <div className="vm-grid">
+            <AnimatedSection direction="left">
+              <div className="vm-card">
+                <div className="vm-img-wrap">
+                  <img src="/about-vision.jpg" alt="Vision" className="vm-img" />
+                  <div className="vm-dot"><span></span></div>
+                </div>
+                <h3>Vision</h3>
+                <p>Our vision is to become the most trusted global education partner, empowering students to pursue international opportunities through transparent guidance, reliable support, and strong institutional collaborations. We aim to shape confident, globally-minded professionals who contribute meaningfully to society and achieve their career aspirations worldwide.</p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection direction="right">
+              <div className="vm-card">
+                <div className="vm-img-wrap">
+                  <img src="/about-mission.jpg" alt="Mission" className="vm-img" />
+                  <div className="vm-dot"><span></span></div>
+                </div>
+                <h3>Mission</h3>
+                <p>Our mission is to guide students in every step of their study abroad journey with honesty, expertise, and care. We provide personalized counseling, admissions support, visa assistance, financial advice, and settlement guidance, ensuring every student experiences a smooth, stress-free, and rewarding international education journey leading to lifelong success.</p>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      <section className="strengths-section">
+      {/* MESSAGE FROM CEO */}
+      <section className="ceo-message">
         <div className="container">
-          <div className="section-title-center">
-            <span className="section-label">O U R  S T R E N G T H S</span>
-            <h2>Why Students Trust Us</h2>
-          </div>
-          <div className="strengths-grid">
+          <AnimatedSection direction="up">
+            <h2>Message from CEO</h2>
+            <p>At World Passport, we believe education is more than just academics – it is the gateway to opportunity, growth, and global exposure. Our mission is to empower students with the right knowledge, guidance, and support so they can step confidently into an international career. Every student's dream is unique, and so is our approach. We ensure that each journey is handled with honesty, transparency, and personalized care. From choosing the right university to settling into a new country, we walk with our students every step of the way. As we continue to expand globally, our commitment remains the same – to be a trusted partner in shaping the future of students who aspire to study abroad. Your success is our pride, and your journey is our purpose.</p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className="about-stats-section">
+        <div className="container">
+          <div className="about-stats-grid">
             {[
-              { icon: '🏆', title: '1000+ Admissions', desc: 'Over a thousand students successfully placed in top universities worldwide.' },
-              { icon: '🌍', title: '30+ Countries', desc: 'Expertise covering universities and visa processes across 30+ countries.' },
-              { icon: '🤝', title: '500+ Partners', desc: 'Strong relationships with 500+ accredited universities globally.' },
-              { icon: '👨‍💼', title: 'Expert Counselors', desc: 'Certified advisors with years of study abroad experience.' },
-              { icon: '📋', title: '100% Visa Support', desc: 'Comprehensive visa documentation and interview preparation.' },
-              { icon: '⭐', title: '5-Star Reviews', desc: 'Consistently high-rated service based on student feedback.' },
+              { num: '100+', label: 'Partner Universities' },
+              { num: '3+', label: 'Countries' },
+              { num: '8+', label: 'Branches' },
+              { num: '2500+', label: 'Global Admissions' },
             ].map((s, i) => (
-              <div key={i} className="strength-card">
-                <div className="red-icon-circle" style={{ margin: '0 auto 14px' }}>{s.icon}</div>
-                <h4>{s.title}</h4>
-                <p>{s.desc}</p>
-              </div>
+              <AnimatedSection key={i} direction="up" delay={i * 100}>
+                <div className="about-stat-item">
+                  <strong>{s.num}</strong>
+                  <span>{s.label}</span>
+                </div>
+              </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="about-cta">
+        <div className="container" style={{ textAlign: 'center' }}>
+          <AnimatedSection direction="up">
+            <h2>Ready to Start Your Global Journey?</h2>
+            <p>Book a free counseling session with our experts today.</p>
+            <Link to="/contact" className="btn-red" style={{ marginTop: '20px', display: 'inline-block', fontSize: '15px', padding: '13px 35px' }}>
+              Get Free Counseling
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </main>
