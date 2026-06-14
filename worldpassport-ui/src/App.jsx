@@ -7,6 +7,7 @@ import Programs from './pages/Programs'
 import StudyAbroad from './pages/StudyAbroad'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
+import BecomingPartner from './pages/BecomingPartner'
 import ThankYou from './pages/ThankYou'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminPanel from './pages/admin/AdminPanel'
@@ -30,6 +31,7 @@ function App() {
               <Route path="/programs" element={<Programs />} />
               <Route path="/study-abroad" element={<StudyAbroad />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/becoming-a-partner" element={<BecomingPartner />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/thank-you" element={<ThankYou />} />
             </Routes>

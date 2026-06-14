@@ -54,8 +54,9 @@ export default function Navbar() {
             <li><NavLink to="/study-abroad" onClick={() => setOpen(false)}>Study Abroad</NavLink></li>
             <li><NavLink to="/programs" onClick={() => setOpen(false)}>Programs</NavLink></li>
             <li><NavLink to="/services" onClick={() => setOpen(false)}>Services</NavLink></li>
-            <li><NavLink to="/contact" onClick={() => setOpen(false)}>Becoming a Partner</NavLink></li>
+            <li><NavLink to="/becoming-a-partner" onClick={() => setOpen(false)}>Becoming a Partner</NavLink></li>
             <li><NavLink to="/contact" onClick={() => setOpen(false)}>Contact Us</NavLink></li>
+            <li><NavLink to="/admin/login" onClick={() => setOpen(false)} className="nav-admin-link">Admin</NavLink></li>
           </ul>
         </div>
       </nav>
