@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import PageBanner from '../components/PageBanner'
 import './Contact.css'
 
 export default function Contact() {
@@ -9,6 +8,14 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', country: '', message: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [copied, setCopied] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  // Trigger entrance animation after mount
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 60)
+    return () => clearTimeout(t)
+  }, [])
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -25,101 +32,123 @@ export default function Contact() {
     }
   }
 
+  const copyEmail = () => {
+    navigator.clipboard.writeText('bm@worldpassport.in')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
-    <main>
-      <PageBanner title="Contact Us" breadcrumb="CONTACT US" />
+    <main className="contact-page">
 
-      <section className="contact-section">
-        <div className="container contact-grid">
+      {/* ── LEFT PANEL ── */}
+      <div className="contact-left">
+        <div className={`contact-left-inner${visible ? ' is-visible' : ''}`}>
 
-          {/* INFO */}
-          <div className="contact-info">
-            <h2>We're Here to Help</h2>
-            <p>Reach out to our team of expert counselors ready to guide you on your journey to study abroad.</p>
+          <span className="contact-eyebrow cl-anim" style={{ '--d': '0ms' }}>contact us</span>
+          <h1 className="contact-big-heading cl-anim" style={{ '--d': '80ms' }}>
+            Let's make<br />it happen
+          </h1>
 
-            <div className="info-card">
-              <div className="red-icon-circle">📍</div>
-              <div>
-                <strong>Office Address</strong>
-                <p>Mahatma Gandhi Road, KPCC Junction, Opp. Maharaja's Ground, Shenoys, Ernakulam, Kerala – 682011</p>
-              </div>
+          <div className="contact-email-row cl-anim" style={{ '--d': '160ms' }}>
+            <a href="mailto:bm@worldpassport.in" className="contact-email-link">
+              bm@worldpassport.in
+            </a>
+            <button className="contact-copy-btn" onClick={copyEmail} title="Copy email">
+              {copied ? '✓ copied' : 'copy'}
+            </button>
+          </div>
+
+          <div className="contact-details cl-anim" style={{ '--d': '240ms' }}>
+            <div className="contact-detail-item">
+              <span className="cd-label">Phone</span>
+              <a href="tel:+919205031277" className="cd-value">+91 92050 31277</a>
             </div>
-            <div className="info-card">
-              <div className="red-icon-circle">📞</div>
-              <div>
-                <strong>Phone</strong>
-                <p><a href="tel:+919205031277">+91 92050 31277</a></p>
-              </div>
+            <div className="contact-detail-item">
+              <span className="cd-label">Office</span>
+              <span className="cd-value">KPCC Junction, Shenoys,<br />Ernakulam, Kerala – 682011</span>
             </div>
-            <div className="info-card">
-              <div className="red-icon-circle">✉️</div>
-              <div>
-                <strong>Email</strong>
-                <p><a href="mailto:bm@worldpassport.in">bm@worldpassport.in</a></p>
-              </div>
-            </div>
-            <div className="info-card">
-              <div className="red-icon-circle">🕐</div>
-              <div>
-                <strong>Working Hours</strong>
-                <p>Monday – Saturday: 9:00 AM – 6:00 PM</p>
-              </div>
+            <div className="contact-detail-item">
+              <span className="cd-label">Hours</span>
+              <span className="cd-value">Mon – Sat &nbsp;9 AM – 6 PM</span>
             </div>
           </div>
 
-          {/* FORM */}
-          <div className="contact-form-wrap">
-            <h2>Send Us an Enquiry</h2>
-            <p>Fill in the form and our team will contact you within 24 hours.</p>
-            <form onSubmit={handleSubmit} className="contact-form">
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">Full Name *</label>
-                  <input type="text" id="name" name="name" placeholder="Your full name"
-                    value={form.name} onChange={handleChange} required />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number *</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX"
-                    value={form.phone} onChange={handleChange} required />
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address *</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com"
-                  value={form.email} onChange={handleChange} required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="country">Preferred Country</label>
-                <select id="country" name="country" value={form.country} onChange={handleChange}>
-                  <option value="">Select a country</option>
-                  <option>United Kingdom</option>
-                  <option>United States</option>
-                  <option>Canada</option>
-                  <option>Australia</option>
-                  <option>New Zealand</option>
-                  <option>Ireland</option>
-                  <option>Germany</option>
-                  <option>France</option>
-                  <option>Dubai / UAE</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" rows="4"
-                  placeholder="Tell us about your plans..."
-                  value={form.message} onChange={handleChange} />
-              </div>
-              {error && <p className="form-error">{error}</p>}
-              <button type="submit" className="btn-red submit-btn" disabled={loading}>
-                {loading ? 'Submitting...' : 'Submit Enquiry'}
-              </button>
-            </form>
+          <div className="contact-social cl-anim" style={{ '--d': '320ms' }}>
+            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">instagram</a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">linkedin</a>
+            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">facebook</a>
           </div>
 
         </div>
-      </section>
+      </div>
+
+      {/* ── RIGHT PANEL ── */}
+      <div className="contact-right">
+        <div className={`contact-right-inner${visible ? ' is-visible' : ''}`}>
+
+          <p className="contact-form-intro cl-anim" style={{ '--d': '100ms' }}>
+            Fill in the form and our counselors will get back to you within 24 hours.
+          </p>
+
+          <form onSubmit={handleSubmit} className="contact-form-tubik cl-anim" style={{ '--d': '200ms' }}>
+
+            <div className="ctf-group">
+              <input
+                type="text" name="name" placeholder="Your full name *"
+                value={form.name} onChange={handleChange} required
+              />
+            </div>
+
+            <div className="ctf-row">
+              <div className="ctf-group">
+                <input
+                  type="email" name="email" placeholder="Email address *"
+                  value={form.email} onChange={handleChange} required
+                />
+              </div>
+              <div className="ctf-group">
+                <input
+                  type="tel" name="phone" placeholder="Phone number *"
+                  value={form.phone} onChange={handleChange} required
+                />
+              </div>
+            </div>
+
+            <div className="ctf-group">
+              <select name="country" value={form.country} onChange={handleChange}>
+                <option value="">Preferred destination country</option>
+                <option>Malta</option>
+                <option>Singapore</option>
+                <option>Malaysia</option>
+                <option>New Zealand</option>
+                <option>Mauritius</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+                <option>Australia</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div className="ctf-group">
+              <textarea
+                name="message" rows="4"
+                placeholder="Tell us about your plans..."
+                value={form.message} onChange={handleChange}
+              />
+            </div>
+
+            {error && <p className="ctf-error">{error}</p>}
+
+            <button type="submit" className="ctf-submit" disabled={loading}>
+              {loading ? 'submitting…' : 'submit'}
+              {!loading && <span className="ctf-arrow">→</span>}
+            </button>
+
+          </form>
+        </div>
+      </div>
+
     </main>
   )
 }

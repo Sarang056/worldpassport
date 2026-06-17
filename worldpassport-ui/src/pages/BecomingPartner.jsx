@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import PageBanner from '../components/PageBanner'
 import './BecomingPartner.css'
+
+const benefits = [
+  { icon: '🌍', text: 'Access to a global network of universities & institutions' },
+  { icon: '📋', text: 'Full marketing support & co-branded materials' },
+  { icon: '💼', text: 'Dedicated relationship manager for your franchise' },
+  { icon: '🎓', text: 'Training & certification for your counseling team' },
+]
 
 export default function BecomingPartner() {
   const navigate = useNavigate()
@@ -11,6 +17,12 @@ export default function BecomingPartner() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 60)
+    return () => clearTimeout(t)
+  }, [])
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -34,45 +46,106 @@ export default function BecomingPartner() {
   }
 
   return (
-    <main>
-      <PageBanner title="Becoming a Partner" breadcrumb="BECOMING A PARTNER" bgImage="/partner-banner.jpg" />
+    <main className="partner-page">
 
-      <section className="partner-section">
-        <div className="container">
-          <p className="partner-tagline">
-            Ready to build something great? Join our team and become a franchise partner!
+      {/* ── LEFT PANEL ── */}
+      <div className="partner-left">
+        <div className={`partner-left-inner${visible ? ' is-visible' : ''}`}>
+
+          <span className="partner-eyebrow pl-anim" style={{ '--d': '0ms' }}>
+            become a partner
+          </span>
+
+          <h1 className="partner-big-heading pl-anim" style={{ '--d': '80ms' }}>
+            Let's build<br />together
+          </h1>
+
+          <p className="partner-tagline pl-anim" style={{ '--d': '160ms' }}>
+            Join the World Passport franchise network and help students reach their global education dreams.
           </p>
 
-          <form onSubmit={handleSubmit} className="partner-form">
-            <div className="partner-form-row">
-              <input type="text" name="name" placeholder="Your Full Name"
-                value={form.name} onChange={handleChange} required />
-              <input type="email" name="email" placeholder="E-mail Address"
-                value={form.email} onChange={handleChange} required />
+          <ul className="partner-benefits pl-anim" style={{ '--d': '240ms' }}>
+            {benefits.map((b, i) => (
+              <li key={i}>
+                <span className="pb-icon">{b.icon}</span>
+                <span>{b.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="partner-contact-row pl-anim" style={{ '--d': '340ms' }}>
+            <div className="pcr-item">
+              <span className="pcr-label">Email us</span>
+              <a href="mailto:bm@worldpassport.in" className="pcr-value">bm@worldpassport.in</a>
             </div>
-            <div className="partner-form-row">
-              <input type="tel" name="phone" placeholder="Phone Number"
-                value={form.phone} onChange={handleChange} required />
-              <input type="text" name="institute" placeholder="Institute"
+            <div className="pcr-item">
+              <span className="pcr-label">Call us</span>
+              <a href="tel:+919205031277" className="pcr-value">+91 92050 31277</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── RIGHT PANEL ── */}
+      <div className="partner-right">
+        <div className={`partner-right-inner${visible ? ' is-visible' : ''}`}>
+
+          <p className="partner-form-intro pl-anim" style={{ '--d': '100ms' }}>
+            Fill in your details and our partnership team will reach out within 48 hours.
+          </p>
+
+          <form onSubmit={handleSubmit} className="partner-form-tubik pl-anim" style={{ '--d': '200ms' }}>
+
+            <div className="ptf-group">
+              <input type="text" name="name" placeholder="Your full name *"
+                value={form.name} onChange={handleChange} required />
+            </div>
+
+            <div className="ptf-row">
+              <div className="ptf-group">
+                <input type="email" name="email" placeholder="Email address *"
+                  value={form.email} onChange={handleChange} required />
+              </div>
+              <div className="ptf-group">
+                <input type="tel" name="phone" placeholder="Phone number *"
+                  value={form.phone} onChange={handleChange} required />
+              </div>
+            </div>
+
+            <div className="ptf-group">
+              <input type="text" name="institute" placeholder="Institute / Organisation name"
                 value={form.institute} onChange={handleChange} />
             </div>
-            <div className="partner-form-row">
-              <input type="text" name="address" placeholder="Address"
-                value={form.address} onChange={handleChange} />
-              <input type="text" name="pincode" placeholder="Pincode"
-                value={form.pincode} onChange={handleChange} />
+
+            <div className="ptf-row">
+              <div className="ptf-group">
+                <input type="text" name="address" placeholder="Address"
+                  value={form.address} onChange={handleChange} />
+              </div>
+              <div className="ptf-group">
+                <input type="text" name="pincode" placeholder="Pincode"
+                  value={form.pincode} onChange={handleChange} />
+              </div>
             </div>
-            <textarea name="message" placeholder="Text" rows="5"
-              value={form.message} onChange={handleChange} />
-            {error && <p className="partner-error">{error}</p>}
-            <div style={{ textAlign: 'center' }}>
-              <button type="submit" className="partner-submit-btn" disabled={loading}>
-                {loading ? 'Submitting...' : 'Submit'}
-              </button>
+
+            <div className="ptf-group">
+              <textarea name="message" rows="4"
+                placeholder="Tell us about your institute or any questions..."
+                value={form.message} onChange={handleChange} />
             </div>
+
+            {error && <p className="ptf-error">{error}</p>}
+
+            <button type="submit" className="ptf-submit" disabled={loading}>
+              {loading ? 'submitting…' : 'submit'}
+              {!loading && <span className="ptf-arrow">→</span>}
+            </button>
+
           </form>
         </div>
-      </section>
+      </div>
+
     </main>
   )
 }

@@ -1,53 +1,123 @@
+/* ── PAGE BANNER — animated Lottie + title transition ── */
+
 .page-banner {
-  background: linear-gradient(to right, #0a1628 55%, #0d2444 100%);
-  padding: 65px 0 55px;
   position: relative;
-  overflow: hidden;
-  min-height: 200px;
+  height: 300px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  overflow: hidden;
+  margin-top: 72px;
 }
 
-.page-banner-bg {
+/* ── Lottie sits on the RIGHT, fades into bg ── */
+.pb-lottie-wrap {
   position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 45%;
-  background-size: cover;
-  background-position: center;
+  right: -20px;
+  bottom: -20px;
+  width: 340px;
+  height: 340px;
   opacity: 0.35;
+  pointer-events: none;
+  /* mask: fade left edge into background */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, white 40%);
+  mask-image: linear-gradient(to right, transparent 0%, white 40%);
 }
 
-.page-banner .container {
+/* ── gradient overlay — stronger left so text stays readable ── */
+.pb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.4)  55%,
+    rgba(0,0,0,0.05) 100%
+  );
+}
+
+/* ── Content ── */
+.pb-content {
   position: relative;
   z-index: 2;
+  padding-bottom: 44px;
 }
 
-.page-banner h1 {
-  font-size: 46px;
-  font-weight: 700;
+/* ── Title — slide up + fade in ── */
+.pb-title {
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 800;
   color: white;
+  letter-spacing: -1px;
   margin-bottom: 12px;
+  font-family: 'Georgia', serif;
+
+  /* start state */
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0ms,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0ms;
 }
 
-.breadcrumb {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-  font-weight: 600;
-  letter-spacing: 1px;
+.pb-title--in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Breadcrumb — slide up slightly later ── */
+.pb-breadcrumb {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 120ms,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 120ms;
 }
 
-.breadcrumb a {
-  color: rgba(255,255,255,0.65);
+.pb-bc--in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pb-breadcrumb a {
+  color: rgba(255,255,255,0.5);
   transition: color 0.2s;
 }
+.pb-breadcrumb a:hover { color: white; }
+.pb-breadcrumb span:last-child { color: rgba(255,255,255,0.9); }
 
-.breadcrumb a:hover { color: white; }
+/* ── Decorative teal accent line ── */
+.pb-content::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: #3DBFB0;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    opacity 0.5s ease 200ms,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 200ms;
+}
 
-.breadcrumb .crumb-sep { color: rgba(255,255,255,0.4); }
+/* activated by adding class via the title --in trigger */
+.pb-content:has(.pb-title--in)::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
 
-.breadcrumb .crumb-current { color: var(--red); }
+@media (max-width: 600px) {
+  .page-banner { height: 240px; }
+  .pb-lottie-wrap { width: 220px; height: 220px; }
+}

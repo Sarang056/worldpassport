@@ -1,187 +1,190 @@
-/* INTRO */
-.about-intro { background: white; padding: 60px 0 40px; }
+/* ── INTRO 3-COL FEATURE CARDS — Fauna style ── */
+.about-intro-section { background: var(--cream); padding: 80px 0; }
 
-.about-intro-grid {
+.about-intro-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.about-intro-head h2 { margin-top: 10px; }
+
+.about-feature-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-.about-intro-left h2 {
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.3;
-  margin-top: 12px;
-}
-
-.about-intro-right p {
-  color: var(--text-light);
-  font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 14px;
-}
-
-/* STUDENTS PHOTO */
-.about-students-photo { background: white; padding: 10px 0 60px; }
-
-.about-full-img {
-  width: 100%;
-  border-radius: 12px;
-  display: block;
-  max-height: 480px;
-  object-fit: cover;
-}
-
-/* VISION & MISSION */
-.vision-mission-section { background: var(--light); padding: 70px 0; }
-
-.vm-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-}
-
-.vm-card { text-align: center; }
-
-.vm-img-wrap {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 30px;
-}
-
-.vm-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  border: 4px solid var(--border);
-}
-
-.vm-dot {
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 24px;
-  background: var(--red);
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* dotted line between the two circles */
-.vm-grid::before {
-  content: '';
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40%;
-  height: 1px;
-  border-top: 2px dashed var(--border);
-  pointer-events: none;
-}
-
-.vm-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--blue);
-  margin-bottom: 14px;
-}
-
-.vm-card p {
-  font-size: 14px;
-  color: var(--text-light);
-  line-height: 1.8;
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-/* CEO MESSAGE */
-.ceo-message {
-  background: var(--navy);
-  padding: 70px 0;
-}
-
-.ceo-message h2 {
-  font-size: 30px;
-  font-weight: 700;
-  color: white;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.ceo-message p {
-  color: rgba(255,255,255,0.8);
-  font-size: 15px;
-  line-height: 1.9;
-  text-align: center;
-  max-width: 750px;
-  margin: 0 auto;
-}
-
-/* STATS */
-.about-stats-section { background: white; padding: 60px 0; }
-
-.about-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-.about-stat-item {
+.afc-card {
+  background: var(--cream2);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
   text-align: center;
-  padding: 25px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.afc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+
+/* Geometric shapes inside cards */
+.afc-shape {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatCard 5s ease-in-out infinite;
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.afc-shape-arch .afc-shape-inner {
+  width: 120px; height: 60px;
+  border-radius: 60px 60px 0 0;
+  background: var(--gold);
+}
+
+.afc-shape-circle .afc-shape-inner {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+.afc-shape-diamond .afc-shape-inner {
+  width: 90px; height: 90px;
+  border-radius: 16px;
+  background: var(--rust);
+  transform: rotate(45deg);
+}
+
+.afc-color-0 .afc-shape-inner { background: var(--gold); }
+.afc-color-1 .afc-shape-inner { background: var(--teal); }
+.afc-color-2 .afc-shape-inner { background: var(--rust); }
+
+.afc-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+.afc-card h3 {
+  font-size: 18px; font-weight: 700;
+  color: var(--dark-brown); margin-bottom: 10px;
+  position: relative; z-index: 2;
+}
+.afc-card p {
+  font-size: 14px; color: var(--mid); line-height: 1.7;
+  position: relative; z-index: 2;
+  text-align: center;
+}
+
+/* ── ABOUT DETAIL SPLIT ── */
+.about-detail-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+.about-detail-img { overflow: hidden; }
+.about-detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 500px; }
+.about-detail-text {
+  background: var(--dark-brown);
+  padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.about-detail-text .section-tag { color: #888; }
+.about-detail-text h2 { color: white; margin-top: 10px; font-size: clamp(24px, 3vw, 36px); }
+.about-detail-bar { width: 48px; height: 3px; background: var(--orange); margin: 20px 0; border-radius: 2px; }
+.about-detail-text p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 14px; }
+.about-detail-tags {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-top: 8px;
+}
+.about-detail-tags span { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+/* ── VISION & MISSION — new card style ── */
+.vm-new-section { background: var(--cream2); padding: 100px 0; }
+
+.vm-new-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.vm-new-card {
+  background: var(--cream);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+  text-align: center;
+  border: 1px solid var(--border);
   transition: all 0.3s;
 }
+.vm-new-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 
-.about-stat-item:hover {
-  border-color: var(--red);
-  box-shadow: var(--shadow);
-  transform: translateY(-3px);
+.vm-new-icon-wrap {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 28px;
+  border: 4px solid var(--border);
+  animation: rotateBorder 8s linear infinite;
 }
 
-.about-stat-item strong {
-  display: block;
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--red);
-  margin-bottom: 6px;
+.vm-vision .vm-new-icon-wrap { border-color: var(--teal); }
+.vm-mission .vm-new-icon-wrap { border-color: var(--orange); }
+
+@keyframes rotateBorder {
+  0% { box-shadow: 0 0 0 3px var(--teal); }
+  50% { box-shadow: 0 0 0 6px rgba(91,158,170,0.3); }
+  100% { box-shadow: 0 0 0 3px var(--teal); }
+}
+.vm-mission .vm-new-icon-wrap { animation: rotateBorderO 8s linear infinite; }
+@keyframes rotateBorderO {
+  0% { box-shadow: 0 0 0 3px var(--orange); }
+  50% { box-shadow: 0 0 0 6px rgba(232,93,43,0.3); }
+  100% { box-shadow: 0 0 0 3px var(--orange); }
 }
 
-.about-stat-item span {
-  font-size: 13px;
-  color: var(--text-light);
-  font-weight: 500;
+.vm-new-icon-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.vm-new-card h3 {
+  font-size: 24px; font-weight: 800;
+  color: var(--dark-brown); margin-bottom: 16px;
+}
+.vm-new-card p {
+  font-size: 15px; color: var(--mid); line-height: 1.8;
 }
 
-/* CTA */
-.about-cta {
-  background: var(--light);
-  padding: 70px 0;
-}
+/* ── CEO MESSAGE — fixed visible text ── */
+.ceo-section { background: var(--dark-brown); padding: 100px 0; }
 
-.about-cta h2 {
-  font-size: 30px;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 10px;
+.ceo-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
 }
-
-.about-cta p {
-  color: var(--text-light);
+.ceo-inner h2 { color: white; margin-top: 10px; }
+.ceo-bar { width: 48px; height: 3px; background: var(--orange); margin: 20px auto; border-radius: 2px; }
+.ceo-inner p {
   font-size: 16px;
+  color: rgba(255,255,255,0.75);  /* FIXED — was invisible before */
+  line-height: 1.9;
+  margin-bottom: 20px;
 }
+.ceo-inner strong { color: rgba(255,255,255,0.95); }
 
-@media (max-width: 768px) {
-  .about-intro-grid { grid-template-columns: 1fr; }
-  .vm-grid { grid-template-columns: 1fr; gap: 40px; }
-  .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-intro-left h2 { font-size: 26px; }
+/* ── CTA ── */
+.about-cta-section { background: var(--cream); padding: 100px 0; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-feature-cards { grid-template-columns: 1fr; }
+  .about-detail-section { grid-template-columns: 1fr; }
+  .about-detail-text { padding: 60px 32px; }
+  .vm-new-grid { grid-template-columns: 1fr; }
+  .about-detail-img img { min-height: 300px; }
 }

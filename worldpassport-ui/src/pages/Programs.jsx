@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
+import lottie from 'lottie-web'
 import { Link } from 'react-router-dom'
 import PageBanner from '../components/PageBanner'
 import AnimatedSection from '../components/AnimatedSection'
@@ -44,13 +45,34 @@ const staticPrograms = {
   ],
 }
 
+const categoryMeta = {
+  Undergraduate: { icon: '🎓', label: 'Undergraduate Programs' },
+  Postgraduate:  { icon: '📚', label: 'Postgraduate Programs' },
+  Doctoral:      { icon: '🔬', label: 'Doctoral Programs' },
+  Diploma:       { icon: '📜', label: 'Diploma Programs' },
+}
+
 export default function Programs() {
   const [dbPrograms, setDbPrograms] = useState([])
+  const lottieRef = useRef(null)
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/programs')
       .then(res => setDbPrograms(res.data))
       .catch(() => {})
+  }, [])
+
+  // Load lottie animation
+  useEffect(() => {
+    if (!lottieRef.current) return
+    const anim = lottie.loadAnimation({
+      container: lottieRef.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/education-anim.json',   // local file in /public
+    })
+    return () => anim.destroy()
   }, [])
 
   // Merge DB programs into static list by category
@@ -65,7 +87,7 @@ export default function Programs() {
 
   return (
     <main>
-      <PageBanner title="Programs" breadcrumb="PROGRAMS" bgImage="/partner-banner.jpg" />
+      <PageBanner title="Programs" breadcrumb="PROGRAMS" />
 
       {/* INTRO SECTION */}
       <section className="programs-intro">
@@ -91,11 +113,7 @@ export default function Programs() {
           </AnimatedSection>
           <AnimatedSection direction="right">
             <div className="programs-intro-img">
-              <img
-                src="/programs-students.jpg"
-                alt="Students"
-                onError={e => { e.target.src = '/hero2.jpeg' }}
-              />
+              <div ref={lottieRef} style={{ width: '100%', height: '380px' }} />
             </div>
           </AnimatedSection>
         </div>
@@ -108,7 +126,11 @@ export default function Programs() {
             {Object.entries(merged).map(([category, items], ci) => (
               <AnimatedSection key={category} direction={ci % 2 === 0 ? 'left' : 'right'} delay={ci * 100}>
                 <div className="program-category">
-                  <h3>{category} Programs</h3>
+                  <span className="prog-cat-icon">
+                    {categoryMeta[category]?.icon || '📋'}
+                  </span>
+                  <h3>{category}</h3>
+                  <span className="prog-cat-count">{items.length} course{items.length !== 1 ? 's' : ''}</span>
                   <ul>
                     {items.map((item, i) => (
                       <li key={i}>
@@ -132,3 +154,4 @@ export default function Programs() {
     </main>
   )
 }
+

@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.6.0",
     "axios": "^1.17.0",
+    "lottie-web": "^5.13.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-intersection-observer": "^10.0.3",

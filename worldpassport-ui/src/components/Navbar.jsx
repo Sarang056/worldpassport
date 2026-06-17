@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 
@@ -11,76 +11,54 @@ const studyAbroadItems = [
 ]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [panelOpen, setPanelOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [query, setQuery] = useState('')
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const handleSearch = (e) => {
     e.preventDefault()
-    if (searchQuery.trim()) {
-      navigate(`/contact`)
-      setSearchOpen(false)
-    }
+    setSearchOpen(false)
+    navigate('/contact')
   }
 
   return (
     <>
-      <header className="site-header">
-        {/* TOP BAR */}
-        <div className="topbar">
-          <div className="container topbar-inner">
-            <div className="topbar-left">
-              <a href="https://www.facebook.com/worldpassport.in" target="_blank" rel="noreferrer"><i className="fab fa-facebook-f"></i></a>
-              <a href="https://www.instagram.com/worldpassport.in" target="_blank" rel="noreferrer"><i className="fab fa-instagram"></i></a>
-              <a href="http://twitter.com" target="_blank" rel="noreferrer"><i className="fab fa-twitter"></i></a>
-              <a href="http://linkedin.com" target="_blank" rel="noreferrer"><i className="fab fa-linkedin-in"></i></a>
-              <a href="http://behance.net" target="_blank" rel="noreferrer"><i className="fab fa-behance"></i></a>
-            </div>
-            <div className="topbar-right">
-              <a href="mailto:bm@worldpassport.in"><span className="topbar-icon">✉</span> bm@worldpassport.in</a>
-              <span className="topbar-divider">|</span>
-              <span><span className="topbar-icon">📍</span> Kandamkulathy Towers, Ernakulam, Kerala</span>
-              <span className="topbar-divider">|</span>
-              <a href="tel:+919205031277" className="topbar-phone">
-                <span className="topbar-icon">💬</span> +91 92050 31277
-              </a>
-            </div>
-          </div>
-        </div>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-container">
+          {/* LOGO */}
+          <Link to="/" className="nav-logo" onClick={() => setMobileOpen(false)}>
+            <img src="/logo.png" alt="World Passport" className="logo-img" />
+          </Link>
 
-        {/* MAIN NAVBAR */}
-        <nav className="navbar">
-          <div className="container nav-inner">
-            <Link to="/" className="nav-logo">
-              <img src="/logo.png" alt="World Passport Logo" />
-            </Link>
-
-            <button className="hamburger" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-              <span></span><span></span><span></span>
-            </button>
-
-            <ul className={`nav-links ${open ? 'open' : ''}`}>
-              <li><NavLink to="/" end onClick={() => setOpen(false)}>Home</NavLink></li>
-              <li><NavLink to="/about" onClick={() => setOpen(false)}>About Us</NavLink></li>
-
-              {/* Study Abroad Dropdown */}
-              <li className="has-dropdown"
+          {/* PILL NAV */}
+          <div className="nav-pill">
+            <ul className="nav-links">
+              <li><NavLink to="/" end>Home</NavLink></li>
+              <li><NavLink to="/about">About Us</NavLink></li>
+              <li
+                className="has-dropdown"
                 onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}>
-                <NavLink to="/study-abroad" onClick={() => setOpen(false)} className="dropdown-trigger">
-                  Study Abroad <i className="fas fa-chevron-down dropdown-arrow"></i>
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
+                <NavLink to="/study-abroad" className="dropdown-trigger">
+                  Study Abroad <i className="fas fa-chevron-down"></i>
                 </NavLink>
                 {dropdownOpen && (
                   <ul className="dropdown-menu">
                     {studyAbroadItems.map(item => (
                       <li key={item.id}>
-                        <Link to={`/study-abroad/${item.id}`}
-                          onClick={() => { setOpen(false); setDropdownOpen(false) }}>
-                          <img src={`https://flagcdn.com/w40/${item.code.toLowerCase()}.png`}
-                            alt={item.name} className="dropdown-flag" />
+                        <Link to={`/study-abroad/${item.id}`} onClick={() => setDropdownOpen(false)}>
+                          <img src={`https://flagcdn.com/w40/${item.code.toLowerCase()}.png`} alt={item.name} className="dd-flag" />
                           {item.name}
                         </Link>
                       </li>
@@ -88,74 +66,87 @@ export default function Navbar() {
                   </ul>
                 )}
               </li>
-
-              <li><NavLink to="/programs" onClick={() => setOpen(false)}>Programs</NavLink></li>
-              <li><NavLink to="/services" onClick={() => setOpen(false)}>Services</NavLink></li>
-              <li><NavLink to="/becoming-a-partner" onClick={() => setOpen(false)}>Becoming a Partner</NavLink></li>
-              <li><NavLink to="/contact" onClick={() => setOpen(false)}>Contact Us</NavLink></li>
+              <li><NavLink to="/programs">Programs</NavLink></li>
+              <li><NavLink to="/services">Services</NavLink></li>
+              <li><NavLink to="/becoming-a-partner">Partner</NavLink></li>
             </ul>
-
-            {/* SEARCH + GRID BUTTONS */}
-            <div className="nav-actions">
-              <button className="search-pill" onClick={() => setSearchOpen(!searchOpen)} aria-label="Search">
-                <i className="fas fa-search"></i>
-                <span>Search...</span>
-              </button>
-              <button className="grid-btn" onClick={() => setPanelOpen(true)} aria-label="Info panel">
-                <i className="fas fa-th"></i>
-              </button>
-              <NavLink to="/admin/login" className="nav-admin-link">Admin</NavLink>
-            </div>
           </div>
 
-          {/* SEARCH DROPDOWN */}
-          {searchOpen && (
-            <div className="search-dropdown">
-              <form onSubmit={handleSearch} className="search-form">
-                <i className="fas fa-search search-form-icon"></i>
-                <input
-                  type="text"
-                  placeholder="Search pages, programs, countries..."
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  autoFocus
-                />
-                <button type="button" className="search-close" onClick={() => setSearchOpen(false)}>✕</button>
-              </form>
-            </div>
-          )}
-        </nav>
-      </header>
+          {/* RIGHT ICONS */}
+          <div className="nav-right">
+            <button className="nav-icon-btn" onClick={() => setSearchOpen(!searchOpen)} aria-label="Search">
+              <i className="fas fa-search"></i>
+            </button>
+            <button className="nav-grid-btn" onClick={() => setPanelOpen(true)} aria-label="Info">
+              <i className="fas fa-th"></i>
+            </button>
+            <Link to="/contact" className="nav-cta-btn nav-contact-btn">Contact</Link>
+            <Link to="/admin/login" className="nav-cta-btn">Admin</Link>
+            <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+              {mobileOpen ? <i className="fas fa-times"></i> : <i className="fas fa-bars"></i>}
+            </button>
+          </div>
+        </div>
 
-      {/* SIDE PANEL OVERLAY */}
+        {/* SEARCH */}
+        {searchOpen && (
+          <div className="search-bar">
+            <form onSubmit={handleSearch}>
+              <i className="fas fa-search"></i>
+              <input type="text" placeholder="Search programs, countries..." value={query}
+                onChange={e => setQuery(e.target.value)} autoFocus />
+              <button type="button" onClick={() => setSearchOpen(false)}>
+                <i className="fas fa-times"></i>
+              </button>
+            </form>
+          </div>
+        )}
+
+        {/* MOBILE MENU */}
+        {mobileOpen && (
+          <div className="mobile-menu">
+            <NavLink to="/" end onClick={() => setMobileOpen(false)}>Home</NavLink>
+            <NavLink to="/about" onClick={() => setMobileOpen(false)}>About Us</NavLink>
+            <NavLink to="/study-abroad" onClick={() => setMobileOpen(false)}>Study Abroad</NavLink>
+            {studyAbroadItems.map(item => (
+              <Link key={item.id} to={`/study-abroad/${item.id}`} onClick={() => setMobileOpen(false)} className="mobile-sub">
+                {item.name}
+              </Link>
+            ))}
+            <NavLink to="/programs" onClick={() => setMobileOpen(false)}>Programs</NavLink>
+            <NavLink to="/services" onClick={() => setMobileOpen(false)}>Services</NavLink>
+            <NavLink to="/becoming-a-partner" onClick={() => setMobileOpen(false)}>Becoming a Partner</NavLink>
+            <NavLink to="/contact" onClick={() => setMobileOpen(false)}>Contact Us</NavLink>
+            <Link to="/admin/login" onClick={() => setMobileOpen(false)} className="mobile-admin">Admin Panel</Link>
+          </div>
+        )}
+      </nav>
+
+      {/* SIDE PANEL */}
       {panelOpen && (
         <div className="panel-overlay" onClick={() => setPanelOpen(false)}>
           <div className="side-panel" onClick={e => e.stopPropagation()}>
-            <button className="panel-close" onClick={() => setPanelOpen(false)}>✕</button>
-
-            <div className="panel-logo">
-              <img src="/logo.png" alt="World Passport" />
-            </div>
-
-            <div className="panel-section">
-              <h3>About Us</h3>
+            <button className="panel-close-btn" onClick={() => setPanelOpen(false)}>
+              <i className="fas fa-times"></i>
+            </button>
+            <img src="/logo.png" alt="World Passport" className="panel-logo" />
+            <div className="panel-block">
+              <h4>About Us</h4>
               <p>World Passport guides students toward international education opportunities with trusted partnerships, transparent counseling, and complete support for admissions, visas, and post-arrival assistance worldwide.</p>
               <p>We make studying abroad simple, stress-free, and rewarding.</p>
             </div>
-
-            <div className="panel-section">
-              <h3>Contact Us</h3>
+            <div className="panel-block">
+              <h4>Contact Us</h4>
               <p><a href="mailto:info@worldpassport.in">info@worldpassport.in</a></p>
               <p><a href="tel:+919205031277">+91 92050 31277</a></p>
-              <p>5th Floor, Kandamkulathy Towers, Mahatma Gandhi Road, KPCC Junction, Opp. Maharaja's Ground, Shenoys, Ernakulam, Kerala – 682011</p>
+              <p>5th Floor, Kandamkulathy Towers, Mahatma Gandhi Road, KPCC Junction, Shenoys, Ernakulam, Kerala – 682011</p>
             </div>
-
-            <div className="panel-social">
+            <div className="panel-socials">
               <a href="https://www.facebook.com/worldpassport.in" target="_blank" rel="noreferrer"><i className="fab fa-facebook-f"></i></a>
               <a href="https://www.instagram.com/worldpassport.in" target="_blank" rel="noreferrer"><i className="fab fa-instagram"></i></a>
               <a href="http://twitter.com" target="_blank" rel="noreferrer"><i className="fab fa-twitter"></i></a>
               <a href="http://linkedin.com" target="_blank" rel="noreferrer"><i className="fab fa-linkedin-in"></i></a>
-              <a href="http://pinterest.com" target="_blank" rel="noreferrer"><i className="fab fa-pinterest-p"></i></a>
+              <a href="http://youtube.com" target="_blank" rel="noreferrer"><i className="fab fa-youtube"></i></a>
             </div>
           </div>
         </div>
