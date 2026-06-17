@@ -129,19 +129,29 @@ export default function Navbar() {
             <button className="panel-close-btn" onClick={() => setPanelOpen(false)}>
               <i className="fas fa-times"></i>
             </button>
-            <img src="/logo.png" alt="World Passport" className="panel-logo" />
-            <div className="panel-block">
-              <h4>About Us</h4>
-              <p>World Passport guides students toward international education opportunities with trusted partnerships, transparent counseling, and complete support for admissions, visas, and post-arrival assistance worldwide.</p>
-              <p>We make studying abroad simple, stress-free, and rewarding.</p>
+
+            {/* Logo */}
+            <div className="panel-top">
+              <img src="/logo.png" alt="World Passport" className="panel-logo" />
             </div>
-            <div className="panel-block">
-              <h4>Contact Us</h4>
-              <p><a href="mailto:info@worldpassport.in">info@worldpassport.in</a></p>
-              <p><a href="tel:+919205031277">+91 92050 31277</a></p>
-              <p>5th Floor, Kandamkulathy Towers, Mahatma Gandhi Road, KPCC Junction, Shenoys, Ernakulam, Kerala – 682011</p>
+
+            {/* Blocks */}
+            <div className="panel-body">
+              <div className="panel-block pan-in" style={{ '--pd': '80ms' }}>
+                <h4>About Us</h4>
+                <p>World Passport guides students toward international education opportunities with trusted partnerships, transparent counseling, and complete support for admissions, visas, and post-arrival assistance worldwide.</p>
+                <p>We make studying abroad simple, stress-free, and rewarding.</p>
+              </div>
+              <div className="panel-block pan-in" style={{ '--pd': '180ms' }}>
+                <h4>Contact Us</h4>
+                <p><a href="mailto:info@worldpassport.in">info@worldpassport.in</a></p>
+                <p><a href="tel:+919205031277">+91 92050 31277</a></p>
+                <p>5th Floor, Kandamkulathy Towers, Mahatma Gandhi Road, KPCC Junction, Shenoys, Ernakulam, Kerala – 682011</p>
+              </div>
             </div>
-            <div className="panel-socials">
+
+            {/* Socials */}
+            <div className="panel-socials pan-in">
               <a href="https://www.facebook.com/worldpassport.in" target="_blank" rel="noreferrer"><i className="fab fa-facebook-f"></i></a>
               <a href="https://www.instagram.com/worldpassport.in" target="_blank" rel="noreferrer"><i className="fab fa-instagram"></i></a>
               <a href="http://twitter.com" target="_blank" rel="noreferrer"><i className="fab fa-twitter"></i></a>
